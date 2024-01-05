@@ -1,13 +1,11 @@
 import "./App.css";
-import { Home } from "./components/inicio/Home";
-import { Loader } from "./components/loader/Loader";
-import { Login } from "./components/login/Login";
+import { Router } from "./router/Router";
 
 function App() {
   return (
     <>
-      <Login />
-    </>
+      <Router/>
+    </>  
   );
 }
 
