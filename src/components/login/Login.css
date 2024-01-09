@@ -3,6 +3,7 @@
     height: 100vh;
     display: grid;
     place-content: center;
+    background-color: var(--bg-color);
 }
 .form-login {
     border: 1px solid #00ffff;
@@ -29,6 +30,8 @@
     width: 100%;
     font-size: 1rem;
     padding: 4px 0;
+    background-color: var(--bg-color);
+
     border: none;
 }
 .box-input input:focus {

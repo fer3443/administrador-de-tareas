@@ -1,9 +1,43 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;1,700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;1,700&display=swap");
 * {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
-	font-family: 'Roboto', sans-serif;
-	background-color: #081b29;
-	color: #fff;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+  /* background-color: #081b29; */
 }
+ul {
+  list-style: none;
+}
+:root {
+  --bg-container: hsl(206, 55%, 21%);
+  --bg-color: hsl(205, 67%, 10%);
+  --color-text: hsl(0, 0%, 100%);
+
+  /*Tamaños y pesos fuente*/
+  --font-regular: 400;
+  --font-medium: 500;
+  --font-semibold: 600;
+  --font-bold: 700;
+
+  --biggest-fs: 2rem;
+  --bigger-fs: 1.25rem;
+  --h1-fs: 1.5rem;
+  --h2-fs: 1.25rem;
+  --h3-fs: 1rem;
+  --normal-fs: 0.938rem;
+  --small-fs: 0.813rem;
+  --smaller-fs: 0.75rem;
+}
+@media screen and (min-width: 1152px) {
+	:root {
+	  --biggest-fs: 4rem;
+	  --bigger-fs: 2rem;
+	  --h1-fs: 2.25rem;
+	  --h2-fs: 1.5rem;
+	  --h3-fs: 1.25rem;
+	  --normal-fs: 1rem;
+	  --small-fs: 0.875rem;
+	  --smaller-fs: 0.813rem;
+	}
+  }
