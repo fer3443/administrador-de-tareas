@@ -1,11 +1,10 @@
 import { server } from "../config/server_constant";
 
-export async function LoginUser({ userName, password, allowLS }) {
+export async function LoginUser({ userName, password }) {
   try {
     const body = JSON.stringify({
       userName,
-      password,
-      allowLS
+      password
     });
     const response = await fetch(`${server.URL_CONECTION}/user/login`, {
       method: "POST",

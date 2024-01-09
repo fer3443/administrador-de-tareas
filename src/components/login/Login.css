@@ -14,9 +14,10 @@
     align-items: center;
     justify-content: space-around;
     margin: .5rem;
+    color: var(--color-text);
 }
 .section-title {
-    font-size: 1.2rem;
+    font-size: var(--h2-fs);
     font-weight: 700;
     margin-block: .5rem;
 }
@@ -31,7 +32,7 @@
     font-size: 1rem;
     padding: 4px 0;
     background-color: var(--bg-color);
-
+    color: var(--color-text);
     border: none;
 }
 .box-input input:focus {
@@ -51,12 +52,13 @@
     border-radius: .4rem;
     background: linear-gradient(45deg, rgba(0, 238, 255, 0.534), #c800ff8f);
     border: none;
-    font-size: 1rem;
+    font-size: var(--normal-fs);
+    color: var(--color-text);
     cursor: pointer;
-   transition: all .4s;
 }
 .btn:hover {
     background: linear-gradient(105deg, #0ef, #c800ff);
+    transition: all .4s;
 }
 .form-footer {
    width: 70%;
