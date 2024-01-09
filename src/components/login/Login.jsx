@@ -1,25 +1,35 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { UserContext } from "../../context/UserContext";
+
 import { LoginUser } from "../../service/api";
 import { Loader } from "../loader/Loader";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-regular-svg-icons";
 import { faLock, faUnlock } from "@fortawesome/free-solid-svg-icons";
+import { useNavigate } from "react-router-dom";
 import "../login/Login.css";
+
 export const Login = () => {
+  const { userData, setUserData } = useContext(UserContext)
   const [data, setData] = useState({
     userName: "",
     password: "",
+    allowLS: false
   });
+  const navigate = useNavigate()
   const [showPass, setShowPass] = useState(false);
   const [loading, setLoading] = useState(false);
+
   function handleChange(e) {
     const { name, value, type, checked } = e.target;
+
     setData((prevData) => ({
       ...prevData,
       [name]: type === "checkbox" ? checked : value,
     }));
   }
-
+ 
   function handleSubmit(e) {
     setLoading(true);
     e.preventDefault();
@@ -28,21 +38,27 @@ export const Login = () => {
       password: data.password,
     })
       .then((res) => {
-        setLoading(false);
-        console.log(res),
-          setData({
-            userName: "",
-            password: "",
-          });
+        setLoading(false)
+        setUserData({
+          user: res.user,
+          isLogged: true,
+          allowLS: data.allowLS
+        })
+        setData({
+          userName: "",
+          password: "",
+          allowLS: data.allowLS
+        })
+        navigate('/home')
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err))
   }
   return (
     <section className="section-login">
       {loading ? (
         <Loader />
       ) : (
-        <form action="" className="form-login">
+        <form className="form-login">
           <span className="section-title">Bienvenido</span>
           <div className="box-input">
             <input
@@ -80,7 +96,6 @@ export const Login = () => {
             <input
               type="checkbox"
               name="allowLS"
-              id=""
               checked={data.allowLS}
               onChange={handleChange}
             />
