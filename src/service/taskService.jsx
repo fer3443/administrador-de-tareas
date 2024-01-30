@@ -4,13 +4,13 @@ export async function AddTask({ title, description, token }) {
   try {
     const body = JSON.stringify({
       title,
-      description,
+      description
     });
-    const response = await fetch(`${server.URL_CONECTION}/api/task`, {
+    const response = await fetch(`${server.URL_CONECTION}/task`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
-        'Authorization': `Bearer ${token}`,
+        'authorization': `Bearer ${token}`,
       },
       body: body,
     });

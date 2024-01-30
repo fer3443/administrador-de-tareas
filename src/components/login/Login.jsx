@@ -40,10 +40,11 @@ export const Login = () => {
       .then((res) => {
         setLoading(false)
         setUserData({
-          user: res.user,
+          user: res,
           isLogged: true,
           allowLS: data.allowLS
         })
+        console.log(res)
         setData({
           userName: "",
           password: "",
@@ -59,7 +60,7 @@ export const Login = () => {
         <Loader />
       ) : (
         <form className="form-login">
-          <span className="section-title">Bienvenido</span>
+          <span className="section-title-form">Bienvenido</span>
           <div className="box-input">
             <input
               type="text"

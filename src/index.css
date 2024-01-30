@@ -29,6 +29,21 @@ ul {
   --small-fs: 0.813rem;
   --smaller-fs: 0.75rem;
 }
+.section {
+	padding-block: 5rem 2rem;
+}
+.section-title {
+  font-size: var(--h1-fs);
+  margin-bottom: 1.5rem;
+}
+.section-subtitle {
+  font-size: var(--normal-fs);
+  margin-bottom: 0.25rem;
+}
+.container {
+	margin-inline: 1.5rem;
+}
+
 @media screen and (min-width: 1152px) {
 	:root {
 	  --biggest-fs: 4rem;
