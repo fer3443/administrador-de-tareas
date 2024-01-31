@@ -39,19 +39,20 @@ export const CreateTask = () => {
     <section className="section create-task">
       <div className="container-create-task container grid">
         <h2 className="section-title">Ingresá una nueva tarea</h2>
+       <div className="wrapper">
         <h3 className="section-subtitle">Completa los siguientes campos</h3>
-        <form action="" className="form-task">
-          <div className="box-title">
+       <form action="">
+          <div className="box-input">
             <input
               type="text"
               name="title"
               value={data.title}
-              placeholder="Titulo de la tarea"
+              placeholder="Nombre de la tarea"
               maxLength={100}
               onChange={handleChange}
             />
           </div>
-          <div className="box-description">
+          <div className="box-input">
             <input
               type="textarea"
               name="description"
@@ -65,6 +66,7 @@ export const CreateTask = () => {
             crear tarea
           </button>
         </form>
+       </div>
       </div>
     </section>
   );
