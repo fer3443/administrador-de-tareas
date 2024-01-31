@@ -7,7 +7,7 @@ import { Loader } from "../loader/Loader";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-regular-svg-icons";
 import { faLock, faUnlock } from "@fortawesome/free-solid-svg-icons";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../login/Login.css";
 
 export const Login = () => {
@@ -59,15 +59,17 @@ export const Login = () => {
       {loading ? (
         <Loader />
       ) : (
-        <form className="form-login">
-          <span className="section-title-form">Bienvenido</span>
+        <div className="wrapper">
+          <h1>Login</h1>
+          <form className="form-login">
           <div className="box-input">
             <input
               type="text"
               name="userName"
               value={data.userName}
               onChange={handleChange}
-              placeholder="nombre de usuario"
+              placeholder="Nombre de usuario"
+              required
             />
             <FontAwesomeIcon icon={faUser} className="icon-form" />
           </div>
@@ -77,7 +79,8 @@ export const Login = () => {
               name="password"
               value={data.password}
               onChange={handleChange}
-              placeholder="contraseña"
+              placeholder="Contraseña"
+              required
             />
             <FontAwesomeIcon
               icon={faLock}
@@ -92,24 +95,27 @@ export const Login = () => {
               onClick={() => setShowPass(!showPass)}
             />
           </div>
-          <div className="check">
-            <label>mantenerme conectado </label>
+          <div className="remember-forgot">
+            <label>
             <input
               type="checkbox"
               name="allowLS"
               checked={data.allowLS}
               onChange={handleChange}
-            />
+            />Mantenerme conectado
+            </label>
+            <Link to={'/'} className="link-forgot">Olvide mi contraseña</Link>
           </div>
           <button type="submit" onClick={handleSubmit} className="btn">
             Iniciar sesión
           </button>
-          <div className="form-footer">
-            <p className="form-footer-txt">
-              ¿No tienes cuenta? por favor registrate aquí
+          <div className="register-box">
+            <p>
+              ¿No tienes cuenta? <Link to={'/'} className="register-link">Registrate</Link>
             </p>
           </div>
         </form>
+        </div>
       )}
     </section>
   );

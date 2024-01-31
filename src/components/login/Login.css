@@ -1,51 +1,93 @@
 .section-login {
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
     display: grid;
     place-content: center;
-    background-color: var(--bg-color);
+    background: var(--bg);
+    background-size: cover;
 }
-.form-login {
-    border: 1px solid #00ffff;
-    box-shadow: 0 0 50px 0 #00a6bc;
-    height: 50vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
-    margin: .5rem;
+.wrapper {
+    width: 420px;
+    background-color: transparent;
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, .2);
+    box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+    border-radius: 10px;
     color: var(--color-text);
+    padding: 30px 40px;
 }
-.section-title-form {
-    font-size: var(--h2-fs);
-    font-weight: 700;
-    margin-block: .5rem;
+.wrapper h1 {
+    font-size: var(--h1-fs);
+    text-align: center;
 }
-.box-input {
+.wrapper .box-input {
     position: relative;
-    width: 230px;
-    border-bottom: 2px solid #eeefff;
-    outline: none;
+    width: 100%;
+    height: 50px;
+    margin: 1.4rem 0;
 }
 .box-input input {
     width: 100%;
-    font-size: 1rem;
-    padding: 4px 0;
-    background-color: var(--bg-color);
+    height: 100%;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, .2);
+    border-radius: 40px;
     color: var(--color-text);
-    border: none;
+    padding: 20px 45px 20px 20px;
+    font-size: var(--normal-fs);
 }
-.box-input input:focus {
-    outline: none;
+.box-input input::placeholder {
+    color: var(--color-text);
 }
 .icon-form, .icon-form-unlock {
     position: absolute;
-    top: 4px;
-    right: 12px;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    font-size: var(--big-fs);
 }
 .hidden {
     display: none;
 }
-.form-footer {
-   width: 70%;
+.wrapper .remember-forgot {
+    display: flex;
+    justify-content: space-between;
+    font-size: var(--small-fs);
+    margin: -15px 0 15px;
+}
+.remember-forgot label input {
+    accent-color: var(--color-text);
+    margin-right: 3px;
+}
+.link-forgot {
+    color: var(--color-text);
+    text-decoration: none;
+}
+.link-forgot:hover {
+    text-decoration: underline;
+}
+.wrapper .register-box {
+    text-align: center;
+    margin-top: 20px;
+    font-size: var(--small-fs);
+    margin: 20px 0 15px;
+}
+.register-link p, .register-link {
+    color: var(--color-text);
+    font-weight: var(--font-semibold);
+    text-decoration: none;
+}
+.register-link:hover {
+    text-decoration: underline;
+}
+@media screen and (320px <= width <= 375px) {
+    .wrapper {
+        width: 300px;
+        padding: 30px 15px;
+    }
+    .wrapper .remember-forgot {
+        flex-direction: column;
+        align-items: center;
+        row-gap: 1rem;
+    }
 }

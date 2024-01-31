@@ -12,7 +12,7 @@ ul {
 :root {
   --hue: 214;
   --color: hsl(var(--hue), 100%, 75%);
-  --bg-container: hsl(206, 55%, 21%);
+  --bg: url('https://articles-img.sftcdn.net/t_articles/auto-mapping-folder/sites/2/2023/03/fondo-pantalla-circulo-neon.jpg') no-repeat center;
   --bg-color: hsl(205, 67%, 10%);
   --color-text: hsl(0, 0%, 100%);
 
@@ -24,6 +24,7 @@ ul {
 
   --biggest-fs: 2rem;
   --bigger-fs: 1.25rem;
+  --big-fs: 1.15rem;
   --h1-fs: 1.5rem;
   --h2-fs: 1.25rem;
   --h3-fs: 1rem;
@@ -55,18 +56,23 @@ input {
   outline: none;
 }
 .btn {
-  width: 140px;
-  padding: .5rem;
-  border-radius: .4rem;
-  background: linear-gradient(45deg, rgba(0, 238, 255, 0.534), #c800ff8f);
+  width: 100%;
+  height: 45px;
+  background-color: #fff;
+  border-radius: 40px;
   border: none;
+  box-shadow: 0 0 10px rgba(0, 0, 0, .1);
   font-size: var(--normal-fs);
-  color: var(--color-text);
+  font-weight: var(--font-semibold);
+  color: #333;
   cursor: pointer;
+  outline: none;
+  transition: all 250ms;
 }
 .btn:hover {
+  color: var(--color-text);
   background: linear-gradient(105deg, #0ef, #c800ff);
-  transition: all .4s;
+  transition: all 450ms;
 }
 @media screen and (min-width: 1152px) {
 	:root {
