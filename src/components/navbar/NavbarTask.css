@@ -3,79 +3,83 @@
   position: fixed;
   top: 0;
   left: 0;
+  backdrop-filter: blur(40px);
   z-index: 100;
-  background-color: var(--bg-container);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
 }
 .nav {
   height: 10vh;
   display: flex;
   justify-content: space-between;
   align-items: center;
-	padding: 0 2rem;
-	color: var(--color-text);
+  padding: 0 2rem;
+  color: var(--color-text);
 }
 .brand {
   font-size: var(--h2-fs);
   font-weight: var(--font-bold);
 }
 @media screen and (max-width: 1023px) {
+
   .nav-menu {
     position: fixed;
-    top: -100%;
+    top: -1000%;
     right: 0;
-    background-color: hsla(206, 55%, 21%, 0.562);
+    background-color: transparent;
     width: 100%;
-		height: 25vh;
-		padding: 4.5rem 0 0 1rem;
-		backdrop-filter: blur(24px);
-		-webkit-backdrop-filter: blur(24px);
-		transition: top .4s;
+    height: 25vh;
+    padding: 4.5rem 0 0 1rem;
+    backdrop-filter: blur(40px);
+    -webkit-backdrop-filter: blur(40px);
+    transition: top 0.4s;
   }
 }
 .nav-list {
-	display: flex;
-	justify-content: space-around;
-	align-items: center;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
 .nav-item {
-	color: var(--color-text);
-	text-decoration: none;
-	font-weight: var(--font-semibold);
-	font-size: var(--normal-fs);
-	cursor: pointer;
+  color: var(--color-text);
+  text-decoration: none;
+  font-weight: var(--font-semibold);
+  font-size: var(--normal-fs);
+  cursor: pointer;
 }
 .nav-close {
-	position: absolute;
-	top: 1.5rem;
-	right: 2rem;
+  position: absolute;
+  top: 1.5rem;
+  right: 2rem;
 }
-.nav-close, .nav-open {
-	cursor: pointer;
-	color: var(--color-text);
-	font-weight: var(--font-bold);
-	font-size: var(--bigger-fs);
+.nav-close,
+.nav-open {
+  cursor: pointer;
+  color: var(--color-text);
+  font-weight: var(--font-bold);
+  font-size: var(--bigger-fs);
 }
 .showMenu {
-	top: 0;
+  top: 0;
 }
 .btn-log-out {
-	border: none;
-	border-radius: .2rem;
-	background-color: transparent;
-	font-size: var(--normal-fs);
-	font-weight: var(--font-semibold);
-	color: var(--color-text);
-	padding: .4rem;
+  border: none;
+  border-radius: 0.2rem;
+  background-color: transparent;
+  font-size: var(--normal-fs);
+  font-weight: var(--font-semibold);
+  color: var(--color-text);
+  padding: 0.4rem;
 }
 .btn-log-out:hover {
-	background-color: var(--bg-color);
-	transition: all .4s;
+  background-color: var(--bg-color);
+  transition: all 0.4s;
 }
 @media screen and (min-width: 1023px) {
-	.nav-close, .nav-open {
-		display: none;
-	}
-	.nav-list {
-		column-gap: 2rem;
-	}
+  .nav-close,
+  .nav-open {
+    display: none;
+  }
+  .nav-list {
+    column-gap: 2rem;
+  }
 }
