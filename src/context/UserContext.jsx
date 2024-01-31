@@ -10,9 +10,12 @@ const initialUserInfo = {
 
 export const UserProvider = ({ children }) => {
   const [userData, setUserData] = useState(initialUserInfo);
+  const [ reload, setReload ] = useState(false)
   const initialValues = {
     userData,
     setUserData,
+    reload,
+    setReload
   };
 
   return (

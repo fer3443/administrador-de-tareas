@@ -6,8 +6,54 @@
     height: 100%;
     place-content: center;
     gap: 1.5rem;
+    padding: 1rem;
 }
 .card-task {
-    background-color: var(--color);
-    border: 1px solid var(--color);
+    min-height: 8rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    border: none;
+    border-radius: 10px;
+    background-color: transparent;
+    backdrop-filter: blur(24px);
+    border: 1px solid rgba(255, 255, 255, .2);
+    box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+    color: var(--color-text);
+    font-size: var(--normal-fs);
+    padding: 1rem;
+}
+.btn-task {
+    width: 6rem;
+    margin-top: 4px;
+    padding: 6px 8px;
+    border: none;
+    border-radius: 40px;
+    color: #333;
+    cursor: pointer;
+    font-size: var(--normal-fs);
+    transition: all 200ms;
+}
+.btn-task:hover{
+    background: linear-gradient(105deg, #0ef, #c800ff);
+    color: var(--color-text);
+    transition: all 200ms;
+    letter-spacing: 1px;
+}
+@media screen and (320px <= width <= 375px) {
+    .card-task {
+        width: 280px;
+    }
+}
+@media screen and (min-width: 768px) {
+    .container-task {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media screen and (min-width: 1024px) {
+    .container-task {
+        grid-template-columns: repeat(3, 1fr);
+    }
 }

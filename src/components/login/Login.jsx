@@ -1,4 +1,5 @@
 import React, { useContext, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../../context/UserContext";
 
 import { LoginUser } from "../../service/api";
@@ -7,7 +8,8 @@ import { Loader } from "../loader/Loader";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-regular-svg-icons";
 import { faLock, faUnlock } from "@fortawesome/free-solid-svg-icons";
-import { Link, useNavigate } from "react-router-dom";
+
+import { Notification } from "../../service/toastNotification";
 import "../login/Login.css";
 
 export const Login = () => {
@@ -45,6 +47,7 @@ export const Login = () => {
           allowLS: data.allowLS
         })
         console.log(res)
+        Notification({message:'sesion iniciada', type: 'succes'})
         setData({
           userName: "",
           password: "",
