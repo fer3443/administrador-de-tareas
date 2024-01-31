@@ -11,7 +11,7 @@ import { useNavigate } from "react-router-dom";
 import "../login/Login.css";
 
 export const Login = () => {
-  const { userData, setUserData } = useContext(UserContext)
+  const { setUserData } = useContext(UserContext)
   const [data, setData] = useState({
     userName: "",
     password: "",
@@ -40,7 +40,7 @@ export const Login = () => {
       .then((res) => {
         setLoading(false)
         setUserData({
-          user: res,
+          dataLogin: res,
           isLogged: true,
           allowLS: data.allowLS
         })

@@ -4,11 +4,18 @@ import { NavbarTask } from "../navbar/NavbarTask";
 import "../profile/UserProfile.css";
 
 export const UserProfile = () => {
-  const {userData: {user}} = useContext(UserContext)
+  const {
+    userData: { dataLogin },
+  } = useContext(UserContext);
   return (
-    <header>
-      <h1>{user.userName}</h1>
-      <NavbarTask />
-    </header>
+    <>
+      <main>
+        <NavbarTask />
+        <section>
+          <h2>{dataLogin.user.userName}</h2>
+          <h3>Mi perfil</h3>
+        </section>
+      </main>
+    </>
   );
 };

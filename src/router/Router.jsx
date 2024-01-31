@@ -5,6 +5,7 @@ import { LoginPage } from "../routes/LoginPage";
 import { ErrorPage } from "../routes/ErrorPage";
 import { UserProvider } from "../context/UserContext";
 import { ProfilePage } from "../routes/ProfilePage";
+import { NavbarTask } from "../components/navbar/NavbarTask";
 
 export const Router = () => {
   return (

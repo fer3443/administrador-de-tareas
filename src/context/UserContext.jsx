@@ -3,7 +3,7 @@ import React, { createContext, useState } from "react";
 export const UserContext = createContext();
 
 const initialUserInfo = {
-  user: null,
+  dataLogin: null,
   isLogged: false,
   allowLS: false,
 };

@@ -46,20 +46,6 @@
 .hidden {
     display: none;
 }
-.btn {
-    width: 140px;
-    padding: .5rem;
-    border-radius: .4rem;
-    background: linear-gradient(45deg, rgba(0, 238, 255, 0.534), #c800ff8f);
-    border: none;
-    font-size: var(--normal-fs);
-    color: var(--color-text);
-    cursor: pointer;
-}
-.btn:hover {
-    background: linear-gradient(105deg, #0ef, #c800ff);
-    transition: all .4s;
-}
 .form-footer {
    width: 70%;
 }

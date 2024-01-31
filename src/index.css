@@ -10,6 +10,8 @@ ul {
   list-style: none;
 }
 :root {
+  --hue: 214;
+  --color: hsl(var(--hue), 100%, 75%);
   --bg-container: hsl(206, 55%, 21%);
   --bg-color: hsl(205, 67%, 10%);
   --color-text: hsl(0, 0%, 100%);
@@ -34,6 +36,7 @@ ul {
 }
 .section-title {
   font-size: var(--h1-fs);
+  color: var(--color-text);
   margin-bottom: 1.5rem;
 }
 .section-subtitle {
@@ -43,7 +46,28 @@ ul {
 .container {
 	margin-inline: 1.5rem;
 }
-
+.grid {
+  display: grid;
+  padding-block: 1rem 1.5rem;
+}
+input {
+  border: none;
+  outline: none;
+}
+.btn {
+  width: 140px;
+  padding: .5rem;
+  border-radius: .4rem;
+  background: linear-gradient(45deg, rgba(0, 238, 255, 0.534), #c800ff8f);
+  border: none;
+  font-size: var(--normal-fs);
+  color: var(--color-text);
+  cursor: pointer;
+}
+.btn:hover {
+  background: linear-gradient(105deg, #0ef, #c800ff);
+  transition: all .4s;
+}
 @media screen and (min-width: 1152px) {
 	:root {
 	  --biggest-fs: 4rem;

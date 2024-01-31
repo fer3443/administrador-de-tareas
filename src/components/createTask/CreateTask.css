@@ -2,3 +2,30 @@
     width: 100%;
     color: var(--color-text);
 }
+.container-create-task {
+    place-content: center;
+    row-gap: 1rem;
+    text-align: center;
+}
+.form-task {
+    height: 100%;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    row-gap: 1.5rem;
+    box-shadow: 0 0 .4rem var(--color);
+    border-radius: .4rem;
+    background-color: var(--bg-container);
+    padding-block: 1rem;
+}
+.form-task input {
+    font-size: var(--normal-fs);
+    font-weight: var(--font-semibold);
+    width: 100%;
+    background-color: var(--bg-color);
+    border-radius: 4px;
+    color: var(--color-text);
+    padding: .6rem 1rem;
+}
