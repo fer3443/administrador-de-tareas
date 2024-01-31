@@ -9,7 +9,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-regular-svg-icons";
 import { faLock, faUnlock } from "@fortawesome/free-solid-svg-icons";
 
-import { Notification } from "../../service/toastNotification";
 import "../login/Login.css";
 
 export const Login = () => {
@@ -47,7 +46,6 @@ export const Login = () => {
           allowLS: data.allowLS
         })
         console.log(res)
-        Notification({message:'sesion iniciada', type: 'succes'})
         setData({
           userName: "",
           password: "",
@@ -114,7 +112,7 @@ export const Login = () => {
           </button>
           <div className="register-box">
             <p>
-              ¿No tienes cuenta? <Link to={'/'} className="register-link">Registrate</Link>
+              ¿No tienes cuenta? <Link to={'/register'} className="register-link">Registrate</Link>
             </p>
           </div>
         </form>

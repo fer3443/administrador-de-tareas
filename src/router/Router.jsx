@@ -5,6 +5,7 @@ import { LoginPage } from "../routes/LoginPage";
 import { ErrorPage } from "../routes/ErrorPage";
 import { UserProvider } from "../context/UserContext";
 import { ProfilePage } from "../routes/ProfilePage";
+import { RegisterPage } from "../routes/RegisterPage";
 
 export const Router = () => {
   return (
@@ -12,6 +13,7 @@ export const Router = () => {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage/>}/>
           <Route path="/home" element={<HomePage />} />
           <Route path="/profile" element={<ProfilePage/>}/>
           <Route path="*" element={<ErrorPage />}/>
