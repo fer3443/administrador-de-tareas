@@ -1,0 +1,33 @@
+.section-register {
+  position: relative;
+  height: 100vh;
+  background: var(--bg);
+  background-size: cover;
+  overflow-y: scroll;
+}
+.container-register {
+  place-content: center;
+}
+.link-back {
+  position: absolute;
+  top: 2rem;
+  right: 3rem;
+  border: none;
+  border-radius: 40px;
+  background: transparent;
+  box-shadow: 0 0 10px rgba(250, 250, 250, 0.5);
+  color: var(--color-text);
+  font-size: var(--big-fs);
+  font-weight: var(--font-semibold);
+  padding: 0.3rem 1rem;
+  text-decoration: none;
+  transition: all 250ms;
+}
+.link-back:hover {
+  background: var(--color-text);
+  color: var(--color);
+  transition: all 250ms;
+}
+.disable {
+  cursor: not-allowed;
+}
