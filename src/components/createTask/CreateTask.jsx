@@ -1,7 +1,8 @@
 import React, { useContext, useState } from "react";
 import { UserContext } from "../../context/UserContext";
-import "../createTask/CreateTask.css";
 import { AddTask } from "../../service/taskService";
+import "../createTask/CreateTask.css";
+import { Notification } from "../../service/toastNotification";
 
 export const CreateTask = () => {
   const {
@@ -35,6 +36,10 @@ export const CreateTask = () => {
           description: "",
         });
         setReload(true);
+        Notification({
+          message: 'Tarea agregada con exito',
+          type: 'success'
+        })
       })
       .catch((err) => console.log(err));
   }
