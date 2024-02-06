@@ -1,8 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../context/UserContext";
 import { DeleteTask, GetTaskByUser, TemporalDelete } from "../../service/taskService";
-import "../taskList/TaskList.css";
+
 import { Notification } from "../../service/toastNotification";
+import "../taskList/TaskList.css";
 
 export const TaskList = () => {
   const {
@@ -46,8 +47,20 @@ export const TaskList = () => {
       token: dataLogin.token,
       id: id
     })
-    .then(res => console.log(res))
-    .catch(err => console.log(err))
+    .then(res => {
+      setReload(true)
+      Notification({
+        message: `${res.msg}`,
+        type: 'success'
+      })
+    })
+    .catch(err => {
+     console.log(err)
+      Notification({
+        message: 'Ups! hubo un error al eliminar tarea',
+        type: 'error'
+      })
+    })
   }
   return (
     <section className="section-task-list section">
@@ -60,7 +73,7 @@ export const TaskList = () => {
               <h3>{item.title}</h3>
               <p>{item.description}</p>
               <span>{fecha}</span>
-              <button className="btn-task" onClick={() => handleVirtualDelete(item.taskId)}>eliminar</button>
+              <button className="btn-task" onClick={() => handleDeleteTask(item.taskId)}>eliminar</button>
             </div>
           );
         })}

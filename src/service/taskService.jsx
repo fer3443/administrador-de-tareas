@@ -73,6 +73,7 @@ export async function DeleteTask({token, id}){
       const errorData = await response.json();
       throw new Error(`Error ${response.status} - ${errorData.msg_error}`);
     }
+    return await response.json()
   } catch (error) {
     throw new Error("Error al eliminar tarea " + error)
   }
