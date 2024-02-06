@@ -1,8 +1,8 @@
 import React, { useContext, useState } from "react";
 import { UserContext } from "../../context/UserContext";
 import { AddTask } from "../../service/taskService";
-import "../createTask/CreateTask.css";
 import { Notification } from "../../service/toastNotification";
+import "../createTask/CreateTask.css";
 
 export const CreateTask = () => {
   const {
@@ -37,12 +37,18 @@ export const CreateTask = () => {
         });
         setReload(true);
         Notification({
-          message: 'Tarea agregada con exito',
+          message: `${res.msg}`,
           type: 'success'
         })
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        Notification({
+          message: `${res.error_msg}`,
+          type: 'error'
+        })
+      });
   }
+
   return (
     <section className="section create-task">
       <div className="container-create-task container grid">

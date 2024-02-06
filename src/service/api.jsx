@@ -6,7 +6,7 @@ export async function LoginUser({ userName, password }) {
       userName,
       password
     });
-    const response = await fetch(`${server.URL_CONECTION}/user/login`, {
+    const response = await fetch(`${server.URL_LOCAL}/user/login`, {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: body,
@@ -32,7 +32,7 @@ export async function CreateUser({name, userName, password, avatar}){
       password,
       avatar
     })
-    const response = await fetch(`${server.URL_CONECTION}/user/add`, {
+    const response = await fetch(`${server.URL_LOCAL}/user/add`, {
       method: "POST",
       headers: {"content-type": "application/json"},
       body: body

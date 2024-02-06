@@ -6,7 +6,7 @@ export async function AddTask({ title, description, token }) {
       title,
       description
     });
-    const response = await fetch(`${server.URL_CONECTION}/task`, {
+    const response = await fetch(`${server.URL_LOCAL}/task`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -26,9 +26,9 @@ export async function AddTask({ title, description, token }) {
 }
 export async function GetTaskByUser({token}){
   try {
-    const response = await fetch(`${server.URL_CONECTION}/task`, {
+    const response = await fetch(`${server.URL_LOCAL}/task`, {
       headers: {
-        "content-type": "aplication/json",
+        "content-type": "application/json",
         "authorization": `Bearer ${token}`
       }
     })
@@ -39,5 +39,41 @@ export async function GetTaskByUser({token}){
     return await response.json()
   } catch (error) {
     throw new Error("Error al leer tareas " + error)
+  }
+}
+export async function TemporalDelete({token, id}){
+  try {
+    const response = await fetch(`${server.URL_LOCAL}/task/temp-del/${id}`, {
+      method: "PUT",
+      headers: {
+        "content-type": "application/json",
+        "authorization": `Bearer ${token}`
+      }
+    })
+    if(!response.ok) {
+      const errorData = await response.json();
+      throw new Error(`Error ${response.status} - ${errorData.error_msg}`);
+    }
+    return await response.json()
+  } catch (error) {
+    throw new Error("Error al eliminar tarea " + error)
+  }
+}
+
+export async function DeleteTask({token, id}){
+  try {
+    const response = await fetch(`${server.URL_LOCAL}/task/${id}`,{
+      method: "DELETE",
+      headers: {
+        "content-type": "application/json",
+        "authorization": `Bearer ${token}`
+      }
+    })
+    if(!response.ok) {
+      const errorData = await response.json();
+      throw new Error(`Error ${response.status} - ${errorData.msg_error}`);
+    }
+  } catch (error) {
+    throw new Error("Error al eliminar tarea " + error)
   }
 }
