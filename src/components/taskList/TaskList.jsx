@@ -4,6 +4,7 @@ import { DeleteTask, GetTaskByUser, TemporalDelete } from "../../service/taskSer
 
 import { Notification } from "../../service/toastNotification";
 import "../taskList/TaskList.css";
+import { useGetTasks } from "../../hooks/useGetTasks";
 
 export const TaskList = () => {
   const {
@@ -11,18 +12,8 @@ export const TaskList = () => {
     reload,
     setReload
   } = useContext(UserContext);
-  const [dataTask, setDataTask] = useState([]);
+  const { dataTask } = useGetTasks(GetTaskByUser, dataLogin.token, reload, setReload)
 
-  useEffect(() => {
-    GetTaskByUser({
-      token: dataLogin.token,
-    })
-      .then(({ data }) => {
-        setDataTask(data);
-        setReload(false)
-      })
-      .catch((err) => console.log(err));
-  }, [reload]);
   function handleVirtualDelete(id){
     TemporalDelete({
       token: dataLogin.token,
@@ -73,7 +64,7 @@ export const TaskList = () => {
               <h3>{item.title}</h3>
               <p>{item.description}</p>
               <span>{fecha}</span>
-              <button className="btn-task" onClick={() => handleDeleteTask(item.taskId)}>eliminar</button>
+              <button className="btn-task" onClick={() => handleVirtualDelete(item.taskId)}>eliminar</button>
             </div>
           );
         })}

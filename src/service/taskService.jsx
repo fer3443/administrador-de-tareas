@@ -1,10 +1,11 @@
 import { server } from "../config/server_constant";
 
-export async function AddTask({ title, description, token }) {
+export async function AddTask({ title, description, date, token }) {
   try {
     const body = JSON.stringify({
       title,
-      description
+      description,
+      date
     });
     const response = await fetch(`${server.URL_LOCAL}/task`, {
       method: "POST",
