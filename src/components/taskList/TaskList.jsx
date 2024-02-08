@@ -1,10 +1,10 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import { UserContext } from "../../context/UserContext";
-import { DeleteTask, GetTaskByUser, TemporalDelete } from "../../service/taskService";
+import { GetTaskByUser, TemporalDelete } from "../../service/taskService";
 
 import { Notification } from "../../service/toastNotification";
-import "../taskList/TaskList.css";
 import { useGetTasks } from "../../hooks/useGetTasks";
+import "../taskList/TaskList.css";
 
 export const TaskList = () => {
   const {
@@ -33,26 +33,7 @@ export const TaskList = () => {
       })
     })
   }
-  function handleDeleteTask(id){
-    DeleteTask({
-      token: dataLogin.token,
-      id: id
-    })
-    .then(res => {
-      setReload(true)
-      Notification({
-        message: `${res.msg}`,
-        type: 'success'
-      })
-    })
-    .catch(err => {
-     console.log(err)
-      Notification({
-        message: 'Ups! hubo un error al eliminar tarea',
-        type: 'error'
-      })
-    })
-  }
+  
   return (
     <section className="section-task-list section">
       <h2 className="section-title">Tareas de {dataLogin.user.name} </h2>

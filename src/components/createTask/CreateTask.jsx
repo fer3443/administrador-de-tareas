@@ -9,7 +9,6 @@ export const CreateTask = () => {
     userData: { dataLogin },
     setReload,
   } = useContext(UserContext);
-  const [ date, setDate ] = useState(new Date())
   const [data, setData] = useState({
     title: "",
     description: "",
