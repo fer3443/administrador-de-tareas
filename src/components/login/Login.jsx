@@ -12,59 +12,52 @@ import "../login/Login.css";
 
 export const Login = () => {
   const { setUserData } = useContext(UserContext)
+  const [ isChecked, setIsChecked ] = useState(true)
   const [data, setData] = useState({
     userName: "",
-    password: "",
-    allowLS: false
+    password: ""
   });
   const navigate = useNavigate()
   const [showPass, setShowPass] = useState(false);
   const [loading, setLoading] = useState(false);
 
+  const handleCheck = () => {//ver manejo de la funcion devuelve los valores invertidos
+    console.log(isChecked)
+    setIsChecked(!isChecked)
+  }
   function handleChange(e) {
-    const { name, value, type, checked } = e.target;
-
+    const { name, value } = e.target;
     setData((prevData) => ({
       ...prevData,
-      [name]: type === "checkbox" ? checked : value,
+      [name]: value
     }));
   }
-//   function validate(values){
-//     if(!values.userName.trim()){
-//       setErrors(errors.userName = 'El nombre de usuario es obligatorio')
-//     }
-//     if(!values.password.trim()){
-//       setErrors(errors.password = 'El nombre de usuario es obligatorio')
-//     }
-//  }
+
   function handleSubmit(e) {
     setLoading(true);
     e.preventDefault();
     LoginUser({
       userName: data.userName,
       password: data.password,
+      allowLS: isChecked
     })
       .then((res) => {
         setLoading(false)
         setUserData({
           dataLogin: res,
           isLogged: true,
-          allowLS: data.allowLS
         })
         console.log(res)
-        setData((prevData) => ({
-          ...prevData,
+        setData({
           userName: '',
           password: ''
-        }))
+        })
         navigate('/home')
       })
       .catch((err) => {
         setLoading(false)
         setData((prevData) => ({
-          ...prevData,
-          userName: '',
-          password: ''
+          ...prevData
         }))
       })
   }
@@ -114,8 +107,8 @@ export const Login = () => {
             <input
               type="checkbox"
               name="allowLS"
-              checked={data.allowLS}
-              onChange={handleChange}
+              checked={isChecked}
+              onChange={handleCheck}
             />Mantenerme conectado
             </label>
             <Link to={'/'} className="link-forgot">Olvide mi contraseña</Link>

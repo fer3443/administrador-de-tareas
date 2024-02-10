@@ -59,8 +59,12 @@ export const RegisterUser = () => {
           password: "",
           avatar: "",
         });
-        navigate("/");
         setLoading(false);
+        Notification({
+          message: `${res.msg}`,
+          type: 'success'
+        })
+        navigate("/");
       })
       .catch((err) => {
         setLoading(false);

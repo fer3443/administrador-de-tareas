@@ -1,10 +1,10 @@
 import { server } from "../config/server_constant";
-import { Notification } from '../service/ToastNotification'
-export async function LoginUser({ userName, password }) {
+export async function LoginUser({ userName, password, allowLS }) {
   try {
     const body = JSON.stringify({
       userName,
-      password
+      password,
+      allowLS
     });
     const response = await fetch(`${server.URL_LOCAL}/user/login`, {
       method: "POST",
