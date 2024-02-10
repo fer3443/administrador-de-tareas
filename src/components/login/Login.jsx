@@ -4,7 +4,6 @@ import { UserContext } from "../../context/UserContext";
 
 import { LoginUser } from "../../service/api";
 import { Loader } from "../loader/Loader";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-regular-svg-icons";
 import { faLock, faUnlock } from "@fortawesome/free-solid-svg-icons";
@@ -30,7 +29,14 @@ export const Login = () => {
       [name]: type === "checkbox" ? checked : value,
     }));
   }
- 
+//   function validate(values){
+//     if(!values.userName.trim()){
+//       setErrors(errors.userName = 'El nombre de usuario es obligatorio')
+//     }
+//     if(!values.password.trim()){
+//       setErrors(errors.password = 'El nombre de usuario es obligatorio')
+//     }
+//  }
   function handleSubmit(e) {
     setLoading(true);
     e.preventDefault();
@@ -46,14 +52,21 @@ export const Login = () => {
           allowLS: data.allowLS
         })
         console.log(res)
-        setData({
-          userName: "",
-          password: "",
-          allowLS: data.allowLS
-        })
+        setData((prevData) => ({
+          ...prevData,
+          userName: '',
+          password: ''
+        }))
         navigate('/home')
       })
-      .catch((err) => console.log(err))
+      .catch((err) => {
+        setLoading(false)
+        setData((prevData) => ({
+          ...prevData,
+          userName: '',
+          password: ''
+        }))
+      })
   }
   return (
     <section className="section-login">

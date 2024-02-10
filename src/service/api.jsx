@@ -1,5 +1,5 @@
 import { server } from "../config/server_constant";
-
+import { Notification } from '../service/ToastNotification'
 export async function LoginUser({ userName, password }) {
   try {
     const body = JSON.stringify({
@@ -39,10 +39,11 @@ export async function CreateUser({name, userName, password, avatar}){
     })
     if(!response.ok){
       const errorData = await response.json()
-      throw new Error(`Error al crear usuario ${response.status} - ${errorData.msg_error}`)
+      console.error('Error en el servidor '+ response.status)
+      throw new Error(errorData.msg_error)
     }
     return await response.json()
   } catch (error) {
-    throw new Error(`Error en el servidor ${error}`)
+    throw error
   }
 }

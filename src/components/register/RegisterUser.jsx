@@ -4,33 +4,17 @@ import { Link, useNavigate } from "react-router-dom";
 import { Loader } from "../loader/Loader";
 
 import "../register/RegisterUser.css";
+import { Notification } from "../../service/ToastNotification";
 export const RegisterUser = () => {
   const [dataUser, setDataUser] = useState({
     name: "",
     userName: "",
     password: "",
-    passConfirm: "",
     avatar: "",
   });
+
   const [loading, setLoading] = useState(false); //agregar el loader
   const navigate = useNavigate();
-
-  const validations = () => {
-    //ver validaciones no funcionan bien
-    if (
-      dataUser.name.trim() === "" ||
-      dataUser.userName.trim() === "" ||
-      dataUser.password.trim() === "" ||
-      dataUser.avatar.trim() === ""
-    ) {
-      return false;
-    }
-    const regex = /^(?!.*\s)(.{4,40})$/;
-    if (!regex.test(dataUser.name) || !regex.test(dataUser.password)) {
-      return false;
-    }
-    return true;
-  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -40,8 +24,27 @@ export const RegisterUser = () => {
     }));
   };
 
+  const validateForm = () => {
+    if(dataUser.name.trim() === "" || dataUser.userName.trim()==="" || dataUser.password.trim() === ""){
+      Notification({message: 'Todos los campos deben ser completados', type: 'error'});
+      return false
+    }
+    if(dataUser.name.length < 3 || dataUser.userName.length < 3){
+      Notification({message: 'El nombre y el usuario deben tener por lo menos 3 caracteres', type: 'error'});
+      return false
+    }
+    const alphanumeric = /^(?=.*[A-Z])(?=.*\d).{6,}$/;
+    if(!alphanumeric.test(dataUser.password)){
+      Notification({message: 'La contraseña debe tener como minimo 6 caracteres incluyendo una mayuscula y un numero', type: 'error'});
+      return false
+    }
+    return true
+  }
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!validateForm()) {
+      return;
+    }
     setLoading(true);
     CreateUser({
       name: dataUser.name,
@@ -54,18 +57,20 @@ export const RegisterUser = () => {
           name: "",
           userName: "",
           password: "",
-          passConfirm: "",
           avatar: "",
         });
-        notify()
         navigate("/");
         setLoading(false);
       })
       .catch((err) => {
         setLoading(false);
-        console.log(err)
+        Notification({
+          message: `${err}`,
+          type: 'error'
+        })
       });
   };
+
   return (
     <section className="section-register section">
       {loading ? (
@@ -88,6 +93,7 @@ export const RegisterUser = () => {
                     value={dataUser.name}
                     onChange={handleChange}
                     placeholder="Nombre"
+                    minLength={3}
                     maxLength={30}
                   />
                 </div>
@@ -98,6 +104,7 @@ export const RegisterUser = () => {
                     value={dataUser.userName}
                     onChange={handleChange}
                     placeholder="Usuario"
+                    minLength={3}
                     maxLength={20}
                   />
                 </div>
@@ -107,16 +114,8 @@ export const RegisterUser = () => {
                     name="password"
                     value={dataUser.password}
                     onChange={handleChange}
+                    minLength={6}
                     placeholder="Contraseña"
-                  />
-                </div>
-                <div className="box-input">
-                  <input
-                    type="password"
-                    name="passConfirm"
-                    value={dataUser.passConfirm}
-                    onChange={handleChange}
-                    placeholder="Confirmar contraseña"
                   />
                 </div>
                 <div className="box-input">
