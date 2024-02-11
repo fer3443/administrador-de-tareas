@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../../context/UserContext";
 
@@ -14,17 +14,31 @@ import "../login/Login.css";
 
 export const Login = () => {
   const { setUserData } = useContext(UserContext);
+  //estado para el checkbox
   const [isChecked, setIsChecked] = useState(true);
+  
   const [data, setData] = useState({
     userName: "",
     password: "",
   });
   const navigate = useNavigate();
+  //estado para mostar password
   const [showPass, setShowPass] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const handleCheck = () => setIsChecked(!isChecked);
 
+  useEffect(() => {
+    const storedData = JSON.parse(localStorage.getItem("loginData"))
+    if(storedData){
+      setUserData({
+        dataLogin: storedData,
+        isLogged: true,
+      })
+      console.log(storedData)
+    }
+  }, [])
+  
   const validate = (array) => {
     if(array.userName.trim() ==='' || array.password.trim() ===''){
       Notification({
@@ -61,6 +75,9 @@ export const Login = () => {
           dataLogin: res,
           isLogged: true,
         });
+        if (isChecked) {
+          localStorage.setItem("loginData", JSON.stringify(res));
+        }
         console.log(res);
         setData({
           userName: "",
