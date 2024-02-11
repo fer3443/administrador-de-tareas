@@ -11,16 +11,14 @@ export async function LoginUser({ userName, password, allowLS }) {
       headers: { "content-type": "application/json" },
       body: body,
     });
-
-    if (!response.ok) {
-      const errorData = await response.json();
-      throw new Error(`Error ${response.status} - ${errorData.msg_error}`);
+    if(!response.ok){
+      const errorData = await response.json()
+      console.error('Error en el servidor '+ response.status)
+      throw new Error(errorData.msg)
     }
-
-    return await response.json();
+    return await response.json()
   } catch (error) {
-    console.error("Error en el login ", error);
-    throw new Error("Hubo un error al iniciar sesion");
+    throw error
   }
 }
 
