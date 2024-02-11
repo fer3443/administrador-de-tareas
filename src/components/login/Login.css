@@ -45,6 +45,7 @@
     right: 20px;
     transform: translateY(-50%);
     font-size: var(--big-fs);
+    cursor: pointer;
 }
 .hidden {
     display: none;

@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { Login } from '../components/login/Login';
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../context/UserContext';
@@ -6,10 +6,17 @@ import { UserContext } from '../context/UserContext';
 export const LoginPage = () => {
   const navigate = useNavigate()
 	const { userData: {isLogged} } = useContext(UserContext);
+
+  useEffect(() => {
+    if(isLogged){
+      navigate('/home')
+    }
+  }, [isLogged])
+  
   return (
   <>
    {
-     isLogged ? navigate('/home') :  <Login/>
+     !isLogged && <Login/>
    }
   </>
   )

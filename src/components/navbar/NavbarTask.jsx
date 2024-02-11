@@ -1,14 +1,38 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
+
+import { UserContext } from "../../context/UserContext";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretDown } from "@fortawesome/free-solid-svg-icons";
 import { faCaretUp } from "@fortawesome/free-solid-svg-icons";
 import '../navbar/NavbarTask.css'
+import { Notification } from "../../service/ToastNotification";
 export const NavbarTask = () => {
-  const [ showMenu, setShowMenu ] = useState(false)
+  const { userData ,setUserData} = useContext(UserContext)
+  const [ showMenu, setShowMenu ] = useState(false);
   const toggleMenu = () => {
     setShowMenu(!showMenu)
+  }
+
+  const logOut = () => {//ver cuando no hay localStorage
+    if(localStorage){
+      localStorage.removeItem('loginData')
+    setUserData({
+      ...userData,
+      isLogged: false
+    })
+    }else{
+      setUserData({
+        dataLogin: null,
+        isLogged: false,
+        allowLS: false
+      })
+    }
+    Notification({
+      message: 'Cierre de sesion exitoso',
+      type: 'success'
+    })
   }
   return (
     <header className="header">
@@ -26,7 +50,7 @@ export const NavbarTask = () => {
                 Mi perfil
               </Link>
             </li>
-          <button className="btn-log-out">cerrar sesion</button>
+          <button className="btn-log-out" onClick={logOut}>cerrar sesion</button>
           </ul>
           <FontAwesomeIcon icon={faCaretUp} className="nav-close" onClick={toggleMenu}/>
         </div>
