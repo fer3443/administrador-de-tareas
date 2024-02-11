@@ -7,7 +7,6 @@ import { LogOut } from "../logOut/LogOut";
 import '../navbar/NavbarTask.css'
 export const NavbarTask = () => {
   const [ showMenu, setShowMenu ] = useState(false);
-  // const logOut = useLogOut()
   const toggleMenu = () => {
     setShowMenu(!showMenu)
   }

@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { UserContext } from "../../context/UserContext";
 import { GetTaskByUser, TemporalDelete } from "../../service/taskService";
 
-import { Notification } from "../../service/toastNotification";
+import { Notification } from "../../service/ToastNotification";
 import { useGetTasks } from "../../hooks/useGetTasks";
 import "../taskList/TaskList.css";
 

@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { UserContext } from "../../context/UserContext";
 import { AddTask } from "../../service/taskService";
-import { Notification } from "../../service/toastNotification";
+import { Notification } from "../../service/ToastNotification";
 import "../createTask/CreateTask.css";
 
 export const CreateTask = () => {
@@ -29,7 +29,6 @@ export const CreateTask = () => {
       token: dataLogin.token,
     })
       .then((res) => {
-        console.log(res);
         setData({
           title: "",
           description: "",
@@ -51,7 +50,8 @@ export const CreateTask = () => {
   return (
     <section className="section create-task">
       <div className="container-create-task container grid">
-        <h2 className="section-title">Ingresá una nueva tarea</h2>
+        <h2 className="section-title">Bienvenido {dataLogin.user.name}</h2>
+        <h3 className="section-subtitle">Ingresa una nueva tarea</h3>
         <div className="wrapper">
           <h3 className="section-subtitle">Completa los siguientes campos</h3>
           <form action="">
