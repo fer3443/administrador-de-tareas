@@ -8,6 +8,7 @@ import { Notification } from "../../service/ToastNotification";
 import 'react-datetime-picker/dist/DateTimePicker.css';
 import 'react-calendar/dist/Calendar.css';
 import 'react-clock/dist/Clock.css';
+
 import "../createTask/CreateTask.css";
 export const CreateTask = () => {
   const {
@@ -51,12 +52,13 @@ export const CreateTask = () => {
       token: dataLogin.token,
     })
       .then((res) => {
+        console.log(res)
         setData({
           title: "",
           description: "",
-        });
+        })
+        setDate(null)
         setReload(true);
-        console.log(res)
         Notification({
           message: `${res.msg}`,
           type: 'success'
