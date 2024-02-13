@@ -14,7 +14,7 @@ export async function LoginUser({ userName, password, allowLS }) {
     if(!response.ok){
       const errorData = await response.json()
       console.error('Error en el servidor '+ response.status)
-      throw new Error(errorData.msg)
+      throw new Error(errorData.msg_error)
     }
     return await response.json()
   } catch (error) {

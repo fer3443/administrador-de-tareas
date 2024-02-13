@@ -13,6 +13,17 @@ export const CreateTask = () => {
     title: "",
     description: "",
   });
+
+  const validateForm = (values) => {
+    if(values.title.trim() === "" || values.description.trim() === ""){
+      Notification({
+        message:'Todos los campos deben ser completados',
+        type: 'error'
+      })
+      return false
+    }
+    return true
+  }
   function handleChange(e) {
     const { name, value } = e.target;
 
@@ -23,6 +34,9 @@ export const CreateTask = () => {
   }
   function handleSubmitTask(e) {
     e.preventDefault();
+    if(!validateForm(data)){
+      return
+    }
     AddTask({
       title: data.title,
       description: data.description,
@@ -41,7 +55,7 @@ export const CreateTask = () => {
       })
       .catch((err) => {
         Notification({
-          message: `${res.error_msg}`,
+          message: `${err}`,
           type: 'error'
         })
       });

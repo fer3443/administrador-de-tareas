@@ -1,0 +1,27 @@
+.section-profile {
+    width: 100%;
+}
+.container-profile {
+    height: 100%;
+    grid-template-columns: 1fr;
+    row-gap: 1rem;
+    place-items: center;
+    background-color: transparent;
+    backdrop-filter: blur(24px);
+    border: 1px solid rgba(255, 255, 255, .2);
+    box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+    border-radius: 10px;
+    color: var(--color-text);
+}
+.img-profile {
+    width: 170px;
+    border-radius: .4rem;
+}
+.profile-info {
+    display: flex;
+    flex-direction: column;
+    row-gap: .5rem;
+}
+.profile-info h5 {
+    text-align: center;
+}
