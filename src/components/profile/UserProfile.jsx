@@ -3,6 +3,7 @@ import { UserContext } from "../../context/UserContext";
 import { NavbarTask } from "../navbar/NavbarTask";
 import { DeletedTask } from "../deletedTask/DeletedTask";
 import "../profile/UserProfile.css";
+import { TaskToUpdate } from "../updateTask/TaskToUpdate";
 
 export const UserProfile = () => {
   const {
@@ -31,6 +32,7 @@ export const UserProfile = () => {
             </article>
           </div>
         </section>
+        <DeletedTask/>
       </main>
     </>
   );
