@@ -21,10 +21,10 @@ export const TaskList = () => {
   );
   //renderizar componente TaskToUpdate
   const [showEdit, setShowEdit] = useState(false);
-  const [ readId, setReadId ] = useState(null)
-  function handleTaskId(taskId){
-    setReadId(taskId)
-    setShowEdit(true)
+  const [readId, setReadId] = useState(null);
+  function handleTaskId(taskId) {
+    setReadId(taskId);
+    setShowEdit(true);
   }
   function handleVirtualDelete(id) {
     TemporalDelete({
@@ -44,36 +44,42 @@ export const TaskList = () => {
         });
       });
   }
- 
+
   return (
     <section className="section-task-list section">
       <h2 className="section-title">Tareas de {dataLogin.user.name} </h2>
       <div className="container-task grid">
-        {
-        showEdit ? <TaskToUpdate id={readId} setShowEdit={setShowEdit}/> :
-        dataTask
-          .filter((element) => element.virtual_delete === false)
-          .map((item, index) => {
+        {showEdit ? (
+          <TaskToUpdate id={readId} setShowEdit={setShowEdit} />
+        ) : (
+          dataTask.filter((element) => element.virtual_delete === false).map((item, index) => {
             const fecha = new Date(item.createdAt).toLocaleString();
-            const  taskCompleted = item.completed ? "Terminada" : "Sin terminar"
+            const taskCompleted = item.completed ? "Terminada" : "Sin terminar";
             return (
               <div className="card-task" key={index}>
-              <h3>{item.title}</h3>
-              <p>Descripcion: {item.description}</p>
-              <span>Fecha: {fecha}</span>
-              <span>Tarea completada: {taskCompleted}</span>
-              <div className="box-buttons">
-                <button className="btn-edit" onClick={()=> handleTaskId(item.taskId)}> editar tarea</button>
-                <button
-                  className="btn-task"
-                  onClick={() => handleVirtualDelete(item.taskId)}
-                >
-                  eliminar
-                </button>
+                <h3>{item.title}</h3>
+                <p>Descripcion: {item.description}</p>
+                <span>Fecha: {fecha}</span>
+                <span>Tarea completada: {taskCompleted}</span>
+                <div className="box-buttons">
+                  <button
+                    className="btn-edit"
+                    onClick={() => handleTaskId(item.taskId)}
+                  >
+                    {" "}
+                    editar tarea
+                  </button>
+                  <button
+                    className="btn-task"
+                    onClick={() => handleVirtualDelete(item.taskId)}
+                  >
+                    eliminar
+                  </button>
+                </div>
               </div>
-            </div>
             );
-          })}
+          })
+        )}
       </div>
     </section>
   );

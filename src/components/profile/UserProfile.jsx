@@ -20,7 +20,7 @@ export const UserProfile = () => {
         <section className="section-profile section">
           <div className="container-profile container grid">
             <div className="box-image-profile">
-              <img className="img-profile" src="https://cdn.playbuzz.com/cdn/913253cd-5a02-4bf2-83e1-18ff2cc7340f/c56157d5-5d8e-4826-89f9-361412275c35.jpg" alt="imagen de perfil" />
+              <img className="img-profile" src={user.avatar} alt="imagen de perfil" />
             </div>
             <h3>{user.name}</h3>
             <article className="profile-info">

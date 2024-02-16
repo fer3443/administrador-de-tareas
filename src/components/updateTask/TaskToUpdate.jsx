@@ -16,10 +16,10 @@ export const TaskToUpdate = ({id, setShowEdit}) => {
   const [newTask, setNewTask] = useState({
     title: '',
     description: '',
-    createdAt: new Date(),
+    createdAt: new Date(),// verificar fecha
     completed: false
   });
-  useEffect(() => { //falta incorporar updateTask ver el back primero y falta pasar datos a datetimepicker
+  useEffect(() => { 
     GetTaskById({
       id
     })

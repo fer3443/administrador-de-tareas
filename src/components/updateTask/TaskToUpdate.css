@@ -12,6 +12,7 @@
   padding: 1rem;
 }
 .card-task-update form {
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -23,7 +24,7 @@
   align-items: center;
   column-gap: 0.5rem;
 }
-.card-task-update input {
+.card-task-update input{
   background-color: transparent;
   font-size: var(--normal-fs);
   color: var(--color-text);
