@@ -1,11 +1,13 @@
 import React, { useContext, useState } from "react";
+import { motion } from "framer-motion";
+
 import { UserContext } from "../../context/UserContext";
 import { GetTaskByUser, TemporalDelete } from "../../service/taskService";
 
 import { Notification } from "../../service/ToastNotification";
 import { useGetTasks } from "../../hooks/useGetTasks";
-import "../taskList/TaskList.css";
 import { TaskToUpdate } from "../updateTask/TaskToUpdate";
+import "../taskList/TaskList.css";
 
 export const TaskList = () => {
   const {
@@ -49,38 +51,42 @@ export const TaskList = () => {
     <section className="section-task-list section">
       <h2 className="section-title">Tareas de {dataLogin.user.name} </h2>
       <div className="container-task grid">
-        {showEdit ? (
-          <TaskToUpdate id={readId} setShowEdit={setShowEdit} />
-        ) : (
-          dataTask.filter((element) => element.virtual_delete === false).map((item, index) => {
-            const fecha = new Date(item.createdAt).toLocaleString();
-            const taskCompleted = item.completed ? "Terminada" : "Sin terminar";
-            return (
-              <div className="card-task" key={index}>
-                <h3>{item.title}</h3>
-                <p>Descripcion: {item.description}</p>
-                <span>Fecha: {fecha}</span>
-                <span>Tarea completada: {taskCompleted}</span>
-                <div className="box-buttons">
-                  <button
-                    className="btn-edit"
-                    onClick={() => handleTaskId(item.taskId)}
-                  >
-                    {" "}
-                    editar tarea
-                  </button>
-                  <button
-                    className="btn-task"
-                    onClick={() => handleVirtualDelete(item.taskId)}
-                  >
-                    eliminar
-                  </button>
-                </div>
-              </div>
-            );
-          })
-        )}
-      </div>
+          {showEdit ? (
+            <TaskToUpdate id={readId} setShowEdit={setShowEdit} />
+          ) : (
+            dataTask
+              .filter((element) => element.virtual_delete === false)
+              .map((item, index) => {
+                const fecha = new Date(item.createdAt).toLocaleString();
+                const taskCompleted = item.completed
+                  ? "Terminada"
+                  : "Sin terminar";
+                return (
+                  <div className="card-task" key={index}>
+                    <h3>{item.title}</h3>
+                    <p>Descripcion: {item.description}</p>
+                    <span>Fecha: {fecha}</span>
+                    <span>Tarea completada: {taskCompleted}</span>
+                    <div className="box-buttons">
+                      <button
+                        className="btn-edit"
+                        onClick={() => handleTaskId(item.taskId)}
+                      >
+                        {" "}
+                        editar tarea
+                      </button>
+                      <button
+                        className="btn-task"
+                        onClick={() => handleVirtualDelete(item.taskId)}
+                      >
+                        eliminar
+                      </button>
+                    </div>
+                  </div>
+                );
+              })
+          )}
+        </div>
     </section>
   );
 };
