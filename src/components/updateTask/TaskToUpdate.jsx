@@ -9,7 +9,6 @@ import "react-calendar/dist/Calendar.css";
 import "react-clock/dist/Clock.css";
 
 import "../updateTask/TaskToUpdate.css";
-import { useGetTaskbyId } from "../../hooks/useGetTaskbyId";
 export const TaskToUpdate = ({ id, setShowEdit }) => {
   const {
     userData: { dataLogin },

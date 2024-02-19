@@ -49,7 +49,8 @@ export async function UpdateUser({ token, name, avatar, updatedAt}){
   try {
     const body = JSON.stringify({
       name,
-      avatar
+      avatar,
+      updatedAt
     })
     const response = await fetch(`${server.URL_LOCAL}/user/updateProfile`, {
       method: 'PUT',
@@ -65,6 +66,25 @@ export async function UpdateUser({ token, name, avatar, updatedAt}){
       throw new Error(errorData.msg_error)
     }
     return response.json()
+  } catch (error) {
+    throw error
+  }
+}
+
+export async function ReadUserById({token}){
+  try {
+    const response = await fetch(`${server.URL_LOCAL}/user`, {
+      headers: {
+        "content-type": "application/json",
+        "authorization": `Bearer ${token}`
+      },
+    })
+    if(!response.ok){
+      const errorData = await response.json()
+      console.error("Error " + response.status)
+      throw new Error(errorData.msg_error)
+    }
+    return await response.json()
   } catch (error) {
     throw error
   }

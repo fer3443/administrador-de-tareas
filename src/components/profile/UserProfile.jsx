@@ -1,18 +1,33 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../context/UserContext";
 import { NavbarTask } from "../navbar/NavbarTask";
 import { DeletedTask } from "../deletedTask/DeletedTask";
+import { UserToUpdate } from "../updateUser/UserToUpdate";
 import "../profile/UserProfile.css";
-import { TaskToUpdate } from "../updateTask/TaskToUpdate";
-
+import { ReadUserById } from "../../service/api";
 export const UserProfile = () => {
   const {
-    userData: { dataLogin: {user} },
+    userData: { dataLogin },
+    reload,
+    setReload,
   } = useContext(UserContext);
+  const [user, setUser] = useState([]);
   const formatDate = (fecha) => {
-    const formattedDate = new Date(fecha).toLocaleString().split(',')[0]
-    return formattedDate
-  }
+    const formattedDate = new Date(fecha).toLocaleString().split(",")[0];
+    return formattedDate;
+  };
+  useEffect(() => {
+    ReadUserById({
+      token: dataLogin.token,
+    })
+      .then(({ readedUser }) => {
+        setUser(readedUser);
+        setReload(false);
+        console.log(readedUser)
+      })
+      .catch((err) => console.log(err));
+  }, [reload]);
+
   return (
     <>
       <main>
@@ -20,7 +35,11 @@ export const UserProfile = () => {
         <section className="section-profile section">
           <div className="container-profile container grid">
             <div className="box-image-profile">
-              <img className="img-profile" src={user.avatar} alt="imagen de perfil" />
+              <img
+                className="img-profile"
+                src={user.avatar}
+                alt="imagen de perfil"
+              />
             </div>
             <h3>{user.name}</h3>
             <article className="profile-info">
@@ -32,7 +51,8 @@ export const UserProfile = () => {
             </article>
           </div>
         </section>
-        <DeletedTask/>
+        <DeletedTask />
+        <UserToUpdate />
       </main>
     </>
   );

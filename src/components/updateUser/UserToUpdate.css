@@ -1,0 +1,12 @@
+.container-user-to-update {
+	place-content: center;
+}
+.form-user-to-update {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	row-gap: 1rem;
+}
+.form-user-to-update button {
+	align-self: center;
+}
