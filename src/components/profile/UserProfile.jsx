@@ -4,6 +4,7 @@ import { NavbarTask } from "../navbar/NavbarTask";
 import { DeletedTask } from "../deletedTask/DeletedTask";
 import { UserToUpdate } from "../updateUser/UserToUpdate";
 import "../profile/UserProfile.css";
+import { useReadUserData } from "../../hooks/useReadUserData";
 import { ReadUserById } from "../../service/api";
 export const UserProfile = () => {
   const {
@@ -11,22 +12,11 @@ export const UserProfile = () => {
     reload,
     setReload,
   } = useContext(UserContext);
-  const [user, setUser] = useState([]);
+  const {data} = useReadUserData(ReadUserById, dataLogin.token, reload, setReload)
   const formatDate = (fecha) => {
     const formattedDate = new Date(fecha).toLocaleString().split(",")[0];
     return formattedDate;
   };
-  useEffect(() => {
-    ReadUserById({
-      token: dataLogin.token,
-    })
-      .then(({ readedUser }) => {
-        setUser(readedUser);
-        setReload(false);
-        console.log(readedUser)
-      })
-      .catch((err) => console.log(err));
-  }, [reload]);
 
   return (
     <>
@@ -37,17 +27,17 @@ export const UserProfile = () => {
             <div className="box-image-profile">
               <img
                 className="img-profile"
-                src={user.avatar}
+                src={data.avatar}
                 alt="imagen de perfil"
               />
             </div>
-            <h3>{user.name}</h3>
+            <h3>{data.name}</h3>
             <article className="profile-info">
               <h5>Info del perfil</h5>
               <hr />
-              <p>Fecha de creación: {formatDate(user.createdAt)}</p>
-              <p>Ultima actualización: {formatDate(user.updatedAt)}</p>
-              <p>Nombre de usuario: {user.userName}</p>
+              <p>Fecha de creación: {formatDate(data.createdAt)}</p>
+              <p>Ultima actualización: {formatDate(data.updatedAt)}</p>
+              <p>Nombre de usuario: {data.userName}</p>
             </article>
           </div>
         </section>
