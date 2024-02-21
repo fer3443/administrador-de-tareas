@@ -35,6 +35,7 @@ export const Login = () => {
         dataLogin: storedData,
         isLogged: true,
       })
+      console.log(storedData)
     }
   }, [])
   

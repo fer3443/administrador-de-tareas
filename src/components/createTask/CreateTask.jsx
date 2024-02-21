@@ -10,12 +10,16 @@ import 'react-calendar/dist/Calendar.css';
 import 'react-clock/dist/Clock.css';
 
 import "../createTask/CreateTask.css";
+import { useReadUserData } from "../../hooks/useReadUserData";
+import { ReadUserById } from "../../service/api";
 export const CreateTask = () => {
   const {
     userData: { dataLogin },
+    reload,
     setReload,
   } = useContext(UserContext);
-  const [data, setData] = useState({
+  const {data} = useReadUserData(ReadUserById, dataLogin.token, reload, setReload)
+  const [dataTask, setDataTask] = useState({
     title: "",
     description: "",
   });
@@ -35,25 +39,25 @@ export const CreateTask = () => {
   function handleChange(e) {
     const { name, value } = e.target;
 
-    setData((prevData) => ({
+    setDataTask((prevData) => ({
       ...prevData,
       [name]: value,
     }));
   }
   function handleSubmitTask(e) {
     e.preventDefault();
-    if(!validateForm(data)){
+    if(!validateForm(dataTask)){
       return
     }
     AddTask({
-      title: data.title,
-      description: data.description,
+      title: dataTask.title,
+      description: dataTask.description,
       createdAt: date,
       token: dataLogin.token,
     })
       .then((res) => {
         console.log(res)
-        setData({
+        setDataTask({
           title: "",
           description: "",
         })
@@ -75,7 +79,7 @@ export const CreateTask = () => {
   return (
     <section className="section create-task">
       <div className="container-create-task container grid">
-        <h2 className="section-title">Bienvenido {dataLogin.user.name}</h2>
+        <h2 className="section-title">Bienvenido {data.name}</h2>
         <h3 className="section-subtitle">Ingresa una nueva tarea</h3>
         <div className="wrapper">
           <h3 className="section-subtitle">Completa los siguientes campos</h3>
@@ -84,7 +88,7 @@ export const CreateTask = () => {
               <input
                 type="text"
                 name="title"
-                value={data.title}
+                value={dataTask.title}
                 placeholder="Nombre de la tarea"
                 maxLength={100}
                 onChange={handleChange}
@@ -94,7 +98,7 @@ export const CreateTask = () => {
               <input
                 type="text"
                 name="description"
-                value={data.description}
+                value={dataTask.description}
                 placeholder="Descripcion de la tarea"
                 maxLength={700}
                 onChange={handleChange}

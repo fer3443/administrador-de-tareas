@@ -8,6 +8,8 @@ import { Notification } from "../../service/ToastNotification";
 import { useGetTasks } from "../../hooks/useGetTasks";
 import { TaskToUpdate } from "../updateTask/TaskToUpdate";
 import "../taskList/TaskList.css";
+import { useReadUserData } from "../../hooks/useReadUserData";
+import { ReadUserById } from "../../service/api";
 
 export const TaskList = () => {
   const {
@@ -15,6 +17,7 @@ export const TaskList = () => {
     reload,
     setReload,
   } = useContext(UserContext);
+  const {data} = useReadUserData(ReadUserById,dataLogin.token, reload, setReload)
   const { dataTask } = useGetTasks(
     GetTaskByUser,
     dataLogin.token,
@@ -49,7 +52,7 @@ export const TaskList = () => {
 
   return (
     <section className="section-task-list section">
-      <h2 className="section-title">Tareas de {dataLogin.user.name} </h2>
+      <h2 className="section-title">Tareas de {data.name} </h2>
       <div className="container-task grid">
           {showEdit ? (
             <TaskToUpdate id={readId} setShowEdit={setShowEdit} />

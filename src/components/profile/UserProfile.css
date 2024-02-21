@@ -17,6 +17,16 @@
     width: 170px;
     border-radius: .4rem;
 }
+.box-name-edit {
+    display: flex;
+    column-gap: .5rem;
+}
+.box-name-edit button {
+    border: none;
+    background-color: transparent;
+    color: var(--color-text);
+    cursor: pointer;
+}
 .profile-info {
     display: flex;
     flex-direction: column;

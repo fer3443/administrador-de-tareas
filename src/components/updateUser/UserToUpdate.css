@@ -1,5 +1,26 @@
+.section-user-to-update {
+	position: absolute;
+	top: 20%;
+	left: 50%;
+	transform: translateX(-50%);
+}
+.hidden {
+	top: -100%;
+	transition: top .4s;
+}
 .container-user-to-update {
 	place-content: center;
+}
+.box-title-tagclose {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+.box-title-tagclose button {
+	border: none;
+	background-color: transparent;
+	color: var(--color-text);
+	cursor: pointer;
 }
 .form-user-to-update {
 	display: flex;
