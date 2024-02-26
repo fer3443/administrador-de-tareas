@@ -1,7 +1,8 @@
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../context/UserContext";
+import { ReadUserById } from "../service/api";
 
-export const useReadUserData = (call, reload, setReload) => {
+export const useReadUserData = (reload, setReload) => {
   const {
     userData: { dataLogin },
   } = useContext(UserContext);
@@ -12,7 +13,7 @@ export const useReadUserData = (call, reload, setReload) => {
   });
 
   useEffect(() => {
-    call({
+    ReadUserById({
       token: dataLogin.token
     })
       .then(({ readedUser }) => {

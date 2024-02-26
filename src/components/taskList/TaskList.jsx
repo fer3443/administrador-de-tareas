@@ -8,8 +8,6 @@ import { Notification } from "../../service/ToastNotification";
 import { useGetTasks } from "../../hooks/useGetTasks";
 import { TaskToUpdate } from "../updateTask/TaskToUpdate";
 import "../taskList/TaskList.css";
-import { useReadUserData } from "../../hooks/useReadUserData";
-import { ReadUserById } from "../../service/api";
 
 export const TaskList = () => {
   const {
@@ -17,7 +15,6 @@ export const TaskList = () => {
     reload,
     setReload,
   } = useContext(UserContext);
-  const {data} = useReadUserData(ReadUserById,dataLogin.token, reload, setReload)
   const { dataTask } = useGetTasks(
     GetTaskByUser,
     dataLogin.token,

@@ -9,6 +9,7 @@ import { Notification } from "../../service/ToastNotification";
 export const UserToUpdate = ({ show, setShow }) => {
   const {
     userData: { dataLogin },
+    reload,
     setReload,
   } = useContext(UserContext);
   const [loading, setLoading] = useState(false);
@@ -17,6 +18,19 @@ export const UserToUpdate = ({ show, setShow }) => {
     avatar: dataLogin.user.avatar,
     updatedAt: new Date(),
   });
+
+  const storage = JSON.parse(localStorage.getItem('loginData'));
+
+  useEffect(() =>{
+    if(storage){
+      setDataForm({
+        name: storage.user.name,
+        avatar: storage.user.avatar,
+        updatedAt: new Date()
+      })
+    }
+  }, [reload])
+
   const handleLoad = () => {
     setReload(true);
     setLoading(false);
@@ -36,7 +50,10 @@ export const UserToUpdate = ({ show, setShow }) => {
       updatedAt: dataForm.updatedAt,
     })
       .then((res) => {
-        localStorage.setItem("loginData", JSON.stringify(res));
+        if(storage){
+          storage.user = res.user
+          localStorage.setItem("loginData", JSON.stringify(storage));
+        }
         handleLoad()
         console.log(res);
       })

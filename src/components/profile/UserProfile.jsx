@@ -15,7 +15,6 @@ export const UserProfile = () => {
     setReload,
   } = useContext(UserContext);
   const { data } = useReadUserData(
-    ReadUserById,
     reload,
     setReload
   );
