@@ -1,32 +1,36 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from "react";
+import { UserContext } from "../context/UserContext";
 
-export const useReadUserData = (call, token, reload, setReload) => {
-	const [response, setResponse] = useState({
-		data: [],
-		msg:'',
-		error: false
-	})
+export const useReadUserData = (call, reload, setReload) => {
+  const {
+    userData: { dataLogin },
+  } = useContext(UserContext);
+  const [response, setResponse] = useState({
+    data: [],
+    msg: "",
+    error: false,
+  });
 
-	useEffect(() => {
-		call({
-			token
-		})
-		.then(({readedUser}) => {
-			setResponse({
-				data: readedUser,
-				msg: '',
-				error: false
-			})
-			setReload(false)
-		})
-		.catch(err => {
-			setResponse({
-				data: [],
-				msg: err,
-				error: true
-			})
-		})
-	}, [reload])
-	
-	return response;
-}
+  useEffect(() => {
+    call({
+      token: dataLogin.token
+    })
+      .then(({ readedUser }) => {
+        setResponse({
+          data: readedUser,
+          msg: "",
+          error: false,
+        });
+        setReload(false);
+      })
+      .catch((err) => {
+        setResponse({
+          data: [],
+          msg: err,
+          error: true,
+        });
+      });
+  }, [reload]);
+
+  return response;
+};

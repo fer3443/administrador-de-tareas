@@ -18,7 +18,7 @@ export const CreateTask = () => {
     reload,
     setReload,
   } = useContext(UserContext);
-  const {data} = useReadUserData(ReadUserById, dataLogin.token, reload, setReload)
+  const {data} = useReadUserData(ReadUserById, reload, setReload)
   const [dataTask, setDataTask] = useState({
     title: "",
     description: "",

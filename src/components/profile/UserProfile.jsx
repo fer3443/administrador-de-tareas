@@ -11,13 +11,11 @@ import { faPen } from "@fortawesome/free-solid-svg-icons";
 import "../profile/UserProfile.css";
 export const UserProfile = () => {
   const {
-    userData: { dataLogin },
     reload,
     setReload,
   } = useContext(UserContext);
   const { data } = useReadUserData(
     ReadUserById,
-    dataLogin.token,
     reload,
     setReload
   );

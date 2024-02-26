@@ -52,7 +52,7 @@ export const TaskList = () => {
 
   return (
     <section className="section-task-list section">
-      <h2 className="section-title">Tareas de {data.name} </h2>
+      <h2 className="section-title">Tus tareas</h2>
       <div className="container-task grid">
           {showEdit ? (
             <TaskToUpdate id={readId} setShowEdit={setShowEdit} />

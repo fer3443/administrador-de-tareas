@@ -22,6 +22,9 @@
 	color: var(--color-text);
 	cursor: pointer;
 }
+.normal-height {
+	height: 60vh;
+}
 .form-user-to-update {
 	display: flex;
 	flex-direction: column;
