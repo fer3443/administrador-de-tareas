@@ -147,7 +147,7 @@ export const Login = () => {
                 />
                 Mantenerme conectado
               </label>
-              <Link to={"/"} className="link-forgot">
+              <Link to={"/recover-pass"} className="link-forgot">
                 Olvide mi contraseña
               </Link>
             </div>

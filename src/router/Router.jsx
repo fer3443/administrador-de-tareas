@@ -9,6 +9,7 @@ import { RegisterPage } from "../routes/RegisterPage";
 import { ToastContainer } from "react-toastify";
 
 import "react-toastify/dist/ReactToastify.css";
+import { RecoverPage } from "../routes/RecoverPage";
 export const Router = () => {
   return (
     <UserProvider>
@@ -18,6 +19,7 @@ export const Router = () => {
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/home" element={<HomePage />} />
           <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/recover-pass" element={<RecoverPage/>}/>
           <Route path="*" element={<ErrorPage />} />
         </Routes>
       </BrowserRouter>
