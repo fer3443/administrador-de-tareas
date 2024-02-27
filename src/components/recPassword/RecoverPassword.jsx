@@ -1,7 +1,9 @@
 import React from 'react'
-
+import '../recPassword/RecoverPassword.css'
 export const RecoverPassword = () => {
   return (
-    <div>RecoverPassword</div>
+   <main>
+    <section></section>
+   </main>
   )
 }
