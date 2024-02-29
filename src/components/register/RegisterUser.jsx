@@ -8,7 +8,7 @@ import { Notification } from "../../service/ToastNotification";
 export const RegisterUser = () => {
   const [dataUser, setDataUser] = useState({
     name: "",
-    userName: "",
+    email: "",
     password: "",
     avatar: "",
   });
@@ -25,11 +25,11 @@ export const RegisterUser = () => {
   };
 
   const validateForm = () => {
-    if(dataUser.name.trim() === "" || dataUser.userName.trim()==="" || dataUser.password.trim() === ""){
+    if(dataUser.name.trim() === "" || dataUser.email.trim()==="" || dataUser.password.trim() === ""){
       Notification({message: 'Todos los campos deben ser completados', type: 'error'});
       return false
     }
-    if(dataUser.name.length < 3 || dataUser.userName.length < 3){
+    if(dataUser.name.length < 3 || dataUser.email.length < 3){
       Notification({message: 'El nombre y el usuario deben tener por lo menos 3 caracteres', type: 'error'});
       return false
     }
@@ -48,14 +48,14 @@ export const RegisterUser = () => {
     setLoading(true);
     CreateUser({
       name: dataUser.name,
-      userName: dataUser.userName,
+      userName: dataUser.email,
       password: dataUser.password,
       avatar: dataUser.avatar,
     })
       .then((res) => {
         setDataUser({
           name: "",
-          userName: "",
+          email: "",
           password: "",
           avatar: "",
         });
@@ -103,13 +103,11 @@ export const RegisterUser = () => {
                 </div>
                 <div className="box-input">
                   <input
-                    type="text"
-                    name="userName"
-                    value={dataUser.userName}
+                    type="email"
+                    name="email"
+                    value={dataUser.email}
                     onChange={handleChange}
-                    placeholder="Usuario"
-                    minLength={3}
-                    maxLength={20}
+                    placeholder="Email"
                   />
                 </div>
                 <div className="box-input">
