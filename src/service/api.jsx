@@ -89,3 +89,43 @@ export async function ReadUserById({token}){
     throw error
   }
 }
+
+export async function ForgotPassword({userName}){
+  try {
+    const body = JSON.stringify({
+      userName
+    })
+    const response = await fetch(`${server.URL_LOCAL}/user/forgot-password`, {
+      method: "POST",
+      headers: {"content-type": "application/json"},
+      body
+    })
+    if(!response.ok){
+      const errorData = await response.json()
+      console.error("Error " + response.status)
+      throw new Error(errorData.msg_error)
+    }
+  } catch (error) {
+    throw error
+  }
+}
+
+export async function ResetPassword({password, token}){
+  try {
+    const body = JSON.stringify({
+      password
+    })
+    const response = await fetch(`${server.URL_LOCAL}/user/reset-password/${token}`, {
+      method: 'POST',
+      headers: {"content-type": "application/json"},
+      body
+    })
+    if(!response.ok){
+      const errorData = await response.json()
+      console.error("Error " + response.status)
+      throw new Error(errorData.msg_error)
+    }
+  } catch (error) {
+    throw error
+  }
+}

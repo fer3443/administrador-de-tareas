@@ -6,10 +6,10 @@ import { ErrorPage } from "../routes/ErrorPage";
 import { UserProvider } from "../context/UserContext";
 import { ProfilePage } from "../routes/ProfilePage";
 import { RegisterPage } from "../routes/RegisterPage";
+import { RecoverPage } from "../routes/RecoverPage";
 import { ToastContainer } from "react-toastify";
 
 import "react-toastify/dist/ReactToastify.css";
-import { RecoverPage } from "../routes/RecoverPage";
 export const Router = () => {
   return (
     <UserProvider>
